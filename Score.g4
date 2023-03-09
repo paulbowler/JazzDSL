@@ -42,5 +42,5 @@ sharp       : '#' ;
 flat        : 'b' ;
 
 STRING      : '"'[a-zA-Z. -]+'"' ;
-INT         : [0-9] ;
+INT         : [0-9]+ ;
 WS          : [ \t\r\n]+ -> skip;
