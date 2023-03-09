@@ -7,3 +7,4 @@ ScoreLexer.java
 ScoreLexer.tokens
 ScoreListener.java
 ScoreParser.java
+*.class
