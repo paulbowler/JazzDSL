@@ -24,9 +24,17 @@ bar         : entry ('|' entry )* ;
 
 entry       : (chord | NOTE | symbol) ;
 
-chord       : STRING ;
+chord       : NOTE ( minor | major | diminished | half_dim) extension? (alteration)*;
 
-symbol      : STRING ;
+minor       : ('-'|'m') ;
+major       : ('+'|'M') ;
+diminished  : ('dim'|'o') ;
+half_dim    : '0' ;
+extension   : ('6'|'7'|'9') ;
+
+alteration  : (SHARP|FLAT) ('5'|'9'|'11'|'13') ;
+
+symbol      : ('%'|'-') ;
 
 KEY         : NOTE (SHARP | FLAT) ;
 
