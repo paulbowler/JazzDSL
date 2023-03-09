@@ -2,11 +2,11 @@ grammar Score;
 
 score       : '{' title time_sig stave+ '}' ;
 
-title       : '"'STRING'"';
+title       : STRING;
 
 time_sig    : INT '/' INT ;
 
-key_sig     : KEY (major|minor);
+key_sig     : key (major|minor);
 
 tempo       : '('STRING')' ;
 
@@ -22,26 +22,25 @@ bar         : label? (chord | symbol) ('|' bar )* ;
 
 label       : '!'('A'|'B'|'C'|'D'|'1'|'2')'!';
 
-chord       : NOTE ( minor | major | diminished | half_dim)? extension? (alteration)*;
+chord       : key (minor|major|diminished|half_dim)? extension? (alteration)*;
 
-minor       : ('-'|'m') ;
-major       : ('+'|'M') ;
-diminished  : ('dim'|'o') ;
+minor       : '-'|'m' ;
+major       : '+'|'M' ;
+diminished  : 'dim'|'o' ;
 half_dim    : '0' ;
-extension   : ('6'|'7'|'9') ;
+extension   : '6'|'7'|'9' ;
 
-alteration  : (SHARP|FLAT)('5'|'9'|'11'|'13') ;
+alteration  : (sharp|flat)('5'|'9'|'11'|'13') ;
 
-symbol      : ('%'|'=') ;
+symbol      : '%'|'=' ;
 
-KEY         : NOTE (SHARP | FLAT) ;
+key         : note (sharp | flat)? ;
 
-NOTE        : [A-G] ;
+note        : 'A'|'B'|'C'|'D'|'E'|'F'|'G' ;
 
-SHARP       : '#' ;
-FLAT        : 'b' ;
+sharp       : '#' ;
+flat        : 'b' ;
 
-STRING      : [a-zA-Z.]+ ;
+STRING      : '"'[a-zA-Z. -]+'"' ;
 INT         : [0-9] ;
-ALPHA       : [a-zA-Z]+ ;
 WS          : [ \t\r\n]+ -> skip;
